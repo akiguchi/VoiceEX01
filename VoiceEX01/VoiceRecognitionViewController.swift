@@ -16,8 +16,7 @@ protocol TouchCellDelegate {
 }
 
 class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, TouchCellDelegate{
-//class VoiceRecognitionViewController: UIViewController{
-    
+ 
     func getNo(id: Int, wtext: String) {
         print(id)
         print(wtext)
@@ -35,10 +34,10 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     var isRecording = false
-    var w: CGFloat = 0
-    var h: CGFloat = 0
-    let d: CGFloat = 50
-    let l: CGFloat = 28
+    //var w: CGFloat = 0
+    //var h: CGFloat = 0
+    //let d: CGFloat = 50
+    //let l: CGFloat = 28
 
     let recognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "ja_JP"))!
     var audioEngine: AVAudioEngine!
@@ -96,6 +95,12 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
         listButton.layer.cornerRadius = 10.0  // 角丸のサイズ
         listButton.tintColor = UIColor.lightText
         
+        //録音ボタンの装飾
+        recordButton.setTitle("停止中", for: .normal)
+        recordButton.setTitleColor(UIColor.white, for: .normal)
+        //recordButton.backgroundColor = UIColor(red:0/255,green:0/255,blue:0/255,alpha:0.7)
+        recordButton.backgroundColor = UIColor.black
+        
         //画面のどこかがタップされた時にdismissKeyboard()関数が呼ばれる
         let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGR.cancelsTouchesInView = false
@@ -149,12 +154,6 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
     
     override func viewDidAppear(_ animated: Bool) {
       
-      //w = baseView.frame.size.width
-      //h = baseView.frame.size.height
-
-      //initRoundCorners()
-      //showStartButton()
-
       SFSpeechRecognizer.requestAuthorization { (authStatus) in
         DispatchQueue.main.async {
           if authStatus != SFSpeechRecognizerAuthorizationStatus.authorized {
@@ -232,7 +231,8 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
             */
             
             recordButton.layer.cornerRadius = 0
-            
+            recordButton.setTitle("停止中", for: .normal)
+            recordButton.backgroundColor = UIColor.black
             stopLiveTranscription()
         }else{
             /*
@@ -241,6 +241,8 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
             }
              */
             recordButton.layer.cornerRadius = 24
+            recordButton.setTitle("翻訳中", for: .normal)
+            recordButton.backgroundColor = UIColor.red
             try! startLiveTranscription()
         }
         
