@@ -21,6 +21,7 @@
 		A6759D7C27E03C250047ABE9 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6759D7B27E03C250047ABE9 /* Token.swift */; };
 		A6759D7E27E03C2E0047ABE9 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6759D7D27E03C2E0047ABE9 /* Tokenizer.swift */; };
 		A6759D7F27E03CAC0047ABE9 /* mecab in Embed Frameworks */ = {isa = PBXBuildFile; productRef = A6759D6427E02E2D0047ABE9 /* mecab */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A6759D8227E05ECB0047ABE9 /* HiraganaWakachi.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6759D8127E05ECB0047ABE9 /* HiraganaWakachi.swift */; };
 		A6F1EDFB2608318A00D63B29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F1EDFA2608318A00D63B29 /* AppDelegate.swift */; };
 		A6F1EDFD2608318A00D63B29 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F1EDFC2608318A00D63B29 /* SceneDelegate.swift */; };
 		A6F1EDFF2608318A00D63B29 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F1EDFE2608318A00D63B29 /* ViewController.swift */; };
@@ -83,6 +84,7 @@
 		A6759D7127E03C180047ABE9 /* char.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = char.bin; sourceTree = "<group>"; };
 		A6759D7B27E03C250047ABE9 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		A6759D7D27E03C2E0047ABE9 /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
+		A6759D8127E05ECB0047ABE9 /* HiraganaWakachi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiraganaWakachi.swift; sourceTree = "<group>"; };
 		A6F1EDF72608318A00D63B29 /* VoiceEX01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VoiceEX01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6F1EDFA2608318A00D63B29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6F1EDFC2608318A00D63B29 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				A6F1EE082608318A00D63B29 /* LaunchScreen.storyboard */,
 				A6F1EE0B2608318A00D63B29 /* Info.plist */,
 				A6F1EE032608318A00D63B29 /* VoiceEXSample01.xcdatamodeld */,
+				A6759D8127E05ECB0047ABE9 /* HiraganaWakachi.swift */,
 			);
 			path = VoiceEX01;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				A6F1EE3C26083AD300D63B29 /* VoiceRecognitionViewController.swift in Sources */,
 				A6F1EDFF2608318A00D63B29 /* ViewController.swift in Sources */,
 				A6F1EE3D26083AD300D63B29 /* VoiceRecognitionSaveViewController.swift in Sources */,
+				A6759D8227E05ECB0047ABE9 /* HiraganaWakachi.swift in Sources */,
 				A6F1EDFB2608318A00D63B29 /* AppDelegate.swift in Sources */,
 				A6F1EE4226083B8D00D63B29 /* RealmData.swift in Sources */,
 				A6F1EE052608318A00D63B29 /* VoiceEXSample01.xcdatamodeld in Sources */,

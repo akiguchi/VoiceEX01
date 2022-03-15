@@ -158,13 +158,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Noq-9m-aXi" userLabel="Button03View">
                                 <rect key="frame" x="0.0" y="169.5" width="102.5" height="75"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqc-gc-KyY">
-                                        <rect key="frame" x="13" y="15" width="77" height="45"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hum-mN-25t">
+                                        <rect key="frame" x="3" y="16" width="97" height="43"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="gray" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="クリア">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
+                                        </buttonConfiguration>
                                         <connections>
-                                            <action selector="tokenize:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oJ0-St-pGl"/>
+                                            <action selector="resetButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bxd-59-xDc"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -172,6 +174,15 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bmy-lh-hol" userLabel="Button04View">
                                 <rect key="frame" x="0.0" y="244.5" width="102.5" height="74.5"/>
+                                <subviews>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cZc-Y4-L2v">
+                                        <rect key="frame" x="27" y="8" width="49" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="wakachiSwitch:" destination="BYZ-38-t0r" eventType="valueChanged" id="HCZ-FH-h8I"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i6K-8S-ZYg" userLabel="Button05View">
@@ -269,6 +280,7 @@
                         <outlet property="saveButton" destination="c3G-SJ-TMt" id="hIJ-dR-bZa"/>
                         <outlet property="tableView" destination="M3E-xm-25I" id="EOW-ZN-lAg"/>
                         <outlet property="textView" destination="GED-NX-XeY" id="0vp-y4-9FO"/>
+                        <outlet property="wakachiSwitch" destination="cZc-Y4-L2v" id="ojn-x7-Y7a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

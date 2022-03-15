@@ -61,56 +61,28 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var listButton: UIButton!
     @IBOutlet var mainView: UIView!
+    @IBOutlet var wakachiSwitch: UISwitch!
     
-    
-    //形態素解析
-    let tokenizer = Tokenizer()
-    
-    @IBAction func tokenize(_ sender: Any) {
-        
-        var inputText = "おじいさんがカブを植えました。甘い甘いカブになれ。大きな大きなカブになれ。"
-        
-        hiraganaWakachi(recognitionText: inputText)
-        
-        /*
-        var outputText = ""
-        
-        let tokens = tokenizer.parse(inputText)
-        
-        // append information from each token
-        for token: Token in tokens {
-            // all tokens have a surface property (the exact substring)
-            //outputText += "\(token.surface)\n"
-            
-            // but the other properties aren't required, so they're optional
-            if let reading = token.reading {
-                let reading2 = reading.applyingTransform(.hiraganaToKatakana, reverse: true)
-                //outputText += "読み: \(reading2 ?? "")\n"
-                outputText += "\(reading2 ?? "")　"
-            }
-            
-            /*
-            if let originalForm = token.originalForm {
-                outputText += "原形: \(originalForm)\n"
-            }
-            
-            if let inflection = token.inflection {
-                outputText += "活用形: \(inflection)\n"
-            }
-            outputText += "品詞: \(token.partsOfSpeech.joined(separator: "、"))\n\n" // if there are no parts of speech, it's an empty array, not nil
-            */
+    @IBAction func wakachiSwitch(_ sender: Any) {
+        if wakachiSwitch.isOn == true{
+            hiraganawakachiFlag = 3
+        }else{
+            hiraganawakachiFlag = 0
         }
-        
-        textView.text = outputText
-         
-         */
-        
     }
     
     
+    //形態素解析
+    var hiraganawakachiFlag:Int = 0 //０；変換無し、1：わかちのみ、２：平仮名のみ、３：平仮名わかち
+    let hiraganawakachi = HiraganaWakachi()
     
-    
-    
+    @IBAction func resetButton(_ sender: Any) {
+        
+        textView.text = ""
+        resetLiveTranscription()
+        try! startLiveTranscription()
+    }
+ 
     override func viewDidLoad() {
       super.viewDidLoad()
   
@@ -157,33 +129,6 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
         
         commentTableViewCell.delegate = self
         
-        /*
-        let tokenizer = Tokenizer()
-        var outputText = ""
-
-        let ttext:String = "今日はいい天気ですね。"
-        let tokens = tokenizer.parse(ttext)
-        
-        for token: Token in tokens {
-                        // all tokens have a surface property (the exact substring)
-                        outputText += "\(token.surface)\n"
-                        
-                        // but the other properties aren't required, so they're optional
-                        if let reading = token.reading {
-                            outputText += "読み: \(reading)\n"
-                        }
-                        
-                        if let originalForm = token.originalForm {
-                            outputText += "原形: \(originalForm)\n"
-                        }
-                        
-                        if let inflection = token.inflection {
-                            outputText += "活用形: \(inflection)\n"
-                        }
-                        outputText += "品詞: \(token.partsOfSpeech.joined(separator: "、"))\n\n" // if there are no parts of speech, it's an empty array, not nil
-                    }
-        print("\(outputText)")
-        */
     }
     
     //キーボードを閉じる（編集終了）のメソッド
@@ -251,6 +196,15 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
         recognitionReq?.endAudio()
     }
     
+    func resetLiveTranscription() {
+        if textList.isEmpty == false && listChageFlag == 1{
+            listChageFlag = 0
+        }
+        audioEngine.stop()
+        audioEngine.inputNode.removeTap(onBus: 0)
+        recognitionReq?.endAudio()
+    }
+    
     func startLiveTranscription() throws {
       // もし前回の音声認識タスクが実行中ならキャンセル
       if let recognitionTask = self.recognitionTask {
@@ -290,7 +244,13 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
         } else {
             DispatchQueue.main.async {
             self.textList.insert((result?.bestTranscription.formattedString)!, at: 0)
-            self.textView.text = self.textList[0]
+                
+                //self.hiraganawakachiFlag = 3
+                
+                self.textView.text = self.hiraganawakachi.hiraganaWakachi(recognitionText: self.textList[0], changeFlag: self.hiraganawakachiFlag)
+                self.textList[0] = self.textView.text
+                
+            //self.textView.text = self.textList[0]
             self.listChageFlag  = 1
             }
         }
@@ -305,7 +265,7 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
                 self.showStartButton()
             }
             */
-            
+            wakachiSwitch.isEnabled = true
             recordButton.layer.cornerRadius = 0
             recordButton.setTitle("停止中", for: .normal)
             recordButton.backgroundColor = UIColor.black
@@ -316,6 +276,7 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
                 self.showStopButton()
             }
              */
+            wakachiSwitch.isEnabled = false
             recordButton.layer.cornerRadius = 24
             recordButton.setTitle("翻訳中", for: .normal)
             recordButton.backgroundColor = UIColor.red
@@ -460,32 +421,6 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
 
             // ④ Alertを表示
         present(nextalert, animated: true, completion: nil)
-        
-    }
-    
-    
-    //平仮名
-    func hiraganaWakachi(recognitionText: String){
- 
-        var outputText:String = ""
-        
-        let tokens = tokenizer.parse(recognitionText)
-        
-        // append information from each token
-        for token: Token in tokens {
-            // all tokens have a surface property (the exact substring)
-            //outputText += "\(token.surface)\n"
-            
-            // but the other properties aren't required, so they're optional
-            if let reading = token.reading {
-                let reading2 = reading.applyingTransform(.hiraganaToKatakana, reverse: true)
-                //outputText += "読み: \(reading2 ?? "")\n"
-                outputText += "\(reading2 ?? "")　"
-            }
-
-        }
-        
-        textView.text = outputText
         
     }
    
