@@ -62,6 +62,55 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var listButton: UIButton!
     @IBOutlet var mainView: UIView!
     
+    
+    //形態素解析
+    let tokenizer = Tokenizer()
+    
+    @IBAction func tokenize(_ sender: Any) {
+        
+        var inputText = "おじいさんがカブを植えました。甘い甘いカブになれ。大きな大きなカブになれ。"
+        
+        hiraganaWakachi(recognitionText: inputText)
+        
+        /*
+        var outputText = ""
+        
+        let tokens = tokenizer.parse(inputText)
+        
+        // append information from each token
+        for token: Token in tokens {
+            // all tokens have a surface property (the exact substring)
+            //outputText += "\(token.surface)\n"
+            
+            // but the other properties aren't required, so they're optional
+            if let reading = token.reading {
+                let reading2 = reading.applyingTransform(.hiraganaToKatakana, reverse: true)
+                //outputText += "読み: \(reading2 ?? "")\n"
+                outputText += "\(reading2 ?? "")　"
+            }
+            
+            /*
+            if let originalForm = token.originalForm {
+                outputText += "原形: \(originalForm)\n"
+            }
+            
+            if let inflection = token.inflection {
+                outputText += "活用形: \(inflection)\n"
+            }
+            outputText += "品詞: \(token.partsOfSpeech.joined(separator: "、"))\n\n" // if there are no parts of speech, it's an empty array, not nil
+            */
+        }
+        
+        textView.text = outputText
+         
+         */
+        
+    }
+    
+    
+    
+    
+    
     override func viewDidLoad() {
       super.viewDidLoad()
   
@@ -108,6 +157,33 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
         
         commentTableViewCell.delegate = self
         
+        /*
+        let tokenizer = Tokenizer()
+        var outputText = ""
+
+        let ttext:String = "今日はいい天気ですね。"
+        let tokens = tokenizer.parse(ttext)
+        
+        for token: Token in tokens {
+                        // all tokens have a surface property (the exact substring)
+                        outputText += "\(token.surface)\n"
+                        
+                        // but the other properties aren't required, so they're optional
+                        if let reading = token.reading {
+                            outputText += "読み: \(reading)\n"
+                        }
+                        
+                        if let originalForm = token.originalForm {
+                            outputText += "原形: \(originalForm)\n"
+                        }
+                        
+                        if let inflection = token.inflection {
+                            outputText += "活用形: \(inflection)\n"
+                        }
+                        outputText += "品詞: \(token.partsOfSpeech.joined(separator: "、"))\n\n" // if there are no parts of speech, it's an empty array, not nil
+                    }
+        print("\(outputText)")
+        */
     }
     
     //キーボードを閉じる（編集終了）のメソッド
@@ -386,6 +462,32 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
         present(nextalert, animated: true, completion: nil)
         
     }
+    
+    
+    //平仮名
+    func hiraganaWakachi(recognitionText: String){
+ 
+        var outputText:String = ""
+        
+        let tokens = tokenizer.parse(recognitionText)
+        
+        // append information from each token
+        for token: Token in tokens {
+            // all tokens have a surface property (the exact substring)
+            //outputText += "\(token.surface)\n"
+            
+            // but the other properties aren't required, so they're optional
+            if let reading = token.reading {
+                let reading2 = reading.applyingTransform(.hiraganaToKatakana, reverse: true)
+                //outputText += "読み: \(reading2 ?? "")\n"
+                outputText += "\(reading2 ?? "")　"
+            }
+
+        }
+        
+        textView.text = outputText
+        
+    }
    
 }
 
@@ -424,4 +526,5 @@ class textCell: UITableViewCell, UITextViewDelegate {
     }
     
 }
+
 

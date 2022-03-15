@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A6759D6527E02E2D0047ABE9 /* mecab in Frameworks */ = {isa = PBXBuildFile; productRef = A6759D6427E02E2D0047ABE9 /* mecab */; };
+		A6759D6727E03C100047ABE9 /* mecabrc in Resources */ = {isa = PBXBuildFile; fileRef = A6759D6627E03C100047ABE9 /* mecabrc */; };
+		A6759D7227E03C180047ABE9 /* rewrite.def in Resources */ = {isa = PBXBuildFile; fileRef = A6759D6927E03C180047ABE9 /* rewrite.def */; };
+		A6759D7327E03C180047ABE9 /* left-id.def in Resources */ = {isa = PBXBuildFile; fileRef = A6759D6A27E03C180047ABE9 /* left-id.def */; };
+		A6759D7427E03C180047ABE9 /* pos-id.def in Resources */ = {isa = PBXBuildFile; fileRef = A6759D6B27E03C180047ABE9 /* pos-id.def */; };
+		A6759D7527E03C180047ABE9 /* matrix.bin in Resources */ = {isa = PBXBuildFile; fileRef = A6759D6C27E03C180047ABE9 /* matrix.bin */; };
+		A6759D7627E03C180047ABE9 /* unk.dic in Resources */ = {isa = PBXBuildFile; fileRef = A6759D6D27E03C180047ABE9 /* unk.dic */; };
+		A6759D7727E03C180047ABE9 /* sys.dic in Resources */ = {isa = PBXBuildFile; fileRef = A6759D6E27E03C180047ABE9 /* sys.dic */; };
+		A6759D7827E03C180047ABE9 /* dicrc in Resources */ = {isa = PBXBuildFile; fileRef = A6759D6F27E03C180047ABE9 /* dicrc */; };
+		A6759D7927E03C180047ABE9 /* right-id.def in Resources */ = {isa = PBXBuildFile; fileRef = A6759D7027E03C180047ABE9 /* right-id.def */; };
+		A6759D7A27E03C180047ABE9 /* char.bin in Resources */ = {isa = PBXBuildFile; fileRef = A6759D7127E03C180047ABE9 /* char.bin */; };
+		A6759D7C27E03C250047ABE9 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6759D7B27E03C250047ABE9 /* Token.swift */; };
+		A6759D7E27E03C2E0047ABE9 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6759D7D27E03C2E0047ABE9 /* Tokenizer.swift */; };
+		A6759D7F27E03CAC0047ABE9 /* mecab in Embed Frameworks */ = {isa = PBXBuildFile; productRef = A6759D6427E02E2D0047ABE9 /* mecab */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A6F1EDFB2608318A00D63B29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F1EDFA2608318A00D63B29 /* AppDelegate.swift */; };
 		A6F1EDFD2608318A00D63B29 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F1EDFC2608318A00D63B29 /* SceneDelegate.swift */; };
 		A6F1EDFF2608318A00D63B29 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F1EDFE2608318A00D63B29 /* ViewController.swift */; };
@@ -42,7 +56,33 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A6759D8027E03CAC0047ABE9 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A6759D7F27E03CAC0047ABE9 /* mecab in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		A6759D6627E03C100047ABE9 /* mecabrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mecabrc; sourceTree = "<group>"; };
+		A6759D6927E03C180047ABE9 /* rewrite.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rewrite.def; sourceTree = "<group>"; };
+		A6759D6A27E03C180047ABE9 /* left-id.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "left-id.def"; sourceTree = "<group>"; };
+		A6759D6B27E03C180047ABE9 /* pos-id.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "pos-id.def"; sourceTree = "<group>"; };
+		A6759D6C27E03C180047ABE9 /* matrix.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = matrix.bin; sourceTree = "<group>"; };
+		A6759D6D27E03C180047ABE9 /* unk.dic */ = {isa = PBXFileReference; lastKnownFileType = file; path = unk.dic; sourceTree = "<group>"; };
+		A6759D6E27E03C180047ABE9 /* sys.dic */ = {isa = PBXFileReference; lastKnownFileType = file; path = sys.dic; sourceTree = "<group>"; };
+		A6759D6F27E03C180047ABE9 /* dicrc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dicrc; sourceTree = "<group>"; };
+		A6759D7027E03C180047ABE9 /* right-id.def */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "right-id.def"; sourceTree = "<group>"; };
+		A6759D7127E03C180047ABE9 /* char.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = char.bin; sourceTree = "<group>"; };
+		A6759D7B27E03C250047ABE9 /* Token.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		A6759D7D27E03C2E0047ABE9 /* Tokenizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
 		A6F1EDF72608318A00D63B29 /* VoiceEX01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VoiceEX01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6F1EDFA2608318A00D63B29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6F1EDFC2608318A00D63B29 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6759D6527E02E2D0047ABE9 /* mecab in Frameworks */,
 				A6F1EE342608365900D63B29 /* RealmSwift in Frameworks */,
 				A6F1EE322608365900D63B29 /* Realm in Frameworks */,
 			);
@@ -92,6 +133,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A6759D6827E03C180047ABE9 /* ipadic */ = {
+			isa = PBXGroup;
+			children = (
+				A6759D6927E03C180047ABE9 /* rewrite.def */,
+				A6759D6A27E03C180047ABE9 /* left-id.def */,
+				A6759D6B27E03C180047ABE9 /* pos-id.def */,
+				A6759D6C27E03C180047ABE9 /* matrix.bin */,
+				A6759D6D27E03C180047ABE9 /* unk.dic */,
+				A6759D6E27E03C180047ABE9 /* sys.dic */,
+				A6759D6F27E03C180047ABE9 /* dicrc */,
+				A6759D7027E03C180047ABE9 /* right-id.def */,
+				A6759D7127E03C180047ABE9 /* char.bin */,
+			);
+			path = ipadic;
+			sourceTree = "<group>";
+		};
 		A6F1EDEE2608318A00D63B29 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +172,10 @@
 		A6F1EDF92608318A00D63B29 /* VoiceEX01 */ = {
 			isa = PBXGroup;
 			children = (
+				A6759D7D27E03C2E0047ABE9 /* Tokenizer.swift */,
+				A6759D7B27E03C250047ABE9 /* Token.swift */,
+				A6759D6827E03C180047ABE9 /* ipadic */,
+				A6759D6627E03C100047ABE9 /* mecabrc */,
 				A6F1EE4126083B8D00D63B29 /* RealmData.swift */,
 				A6F1EDFA2608318A00D63B29 /* AppDelegate.swift */,
 				A6F1EDFC2608318A00D63B29 /* SceneDelegate.swift */,
@@ -160,6 +221,7 @@
 				A6F1EDF32608318A00D63B29 /* Sources */,
 				A6F1EDF42608318A00D63B29 /* Frameworks */,
 				A6F1EDF52608318A00D63B29 /* Resources */,
+				A6759D8027E03CAC0047ABE9 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -169,6 +231,7 @@
 			packageProductDependencies = (
 				A6F1EE312608365900D63B29 /* Realm */,
 				A6F1EE332608365900D63B29 /* RealmSwift */,
+				A6759D6427E02E2D0047ABE9 /* mecab */,
 			);
 			productName = VoiceEXSample01;
 			productReference = A6F1EDF72608318A00D63B29 /* VoiceEX01.app */;
@@ -243,6 +306,7 @@
 			mainGroup = A6F1EDEE2608318A00D63B29;
 			packageReferences = (
 				A6F1EE302608365900D63B29 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				A6759D6327E02E2D0047ABE9 /* XCRemoteSwiftPackageReference "mecab" */,
 			);
 			productRefGroup = A6F1EDF82608318A00D63B29 /* Products */;
 			projectDirPath = "";
@@ -260,10 +324,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6759D7727E03C180047ABE9 /* sys.dic in Resources */,
+				A6759D7527E03C180047ABE9 /* matrix.bin in Resources */,
+				A6759D6727E03C100047ABE9 /* mecabrc in Resources */,
+				A6759D7927E03C180047ABE9 /* right-id.def in Resources */,
+				A6759D7627E03C180047ABE9 /* unk.dic in Resources */,
+				A6759D7427E03C180047ABE9 /* pos-id.def in Resources */,
+				A6759D7827E03C180047ABE9 /* dicrc in Resources */,
 				A6F1EE0A2608318A00D63B29 /* LaunchScreen.storyboard in Resources */,
+				A6759D7227E03C180047ABE9 /* rewrite.def in Resources */,
 				A6F1EE4926083DE700D63B29 /* VoiceRecognition.storyboard in Resources */,
 				A6F1EE072608318A00D63B29 /* Assets.xcassets in Resources */,
+				A6759D7327E03C180047ABE9 /* left-id.def in Resources */,
 				A6F1EE022608318A00D63B29 /* Main.storyboard in Resources */,
+				A6759D7A27E03C180047ABE9 /* char.bin in Resources */,
 				A6F1EE4D26083DE900D63B29 /* VoiceRecognitionSave.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +370,8 @@
 				A6F1EE4226083B8D00D63B29 /* RealmData.swift in Sources */,
 				A6F1EE052608318A00D63B29 /* VoiceEXSample01.xcdatamodeld in Sources */,
 				A6F1EDFD2608318A00D63B29 /* SceneDelegate.swift in Sources */,
+				A6759D7E27E03C2E0047ABE9 /* Tokenizer.swift in Sources */,
+				A6759D7C27E03C250047ABE9 /* Token.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,6 +712,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A6759D6327E02E2D0047ABE9 /* XCRemoteSwiftPackageReference "mecab" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/landonepps/mecab";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		A6F1EE302608365900D63B29 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa";
@@ -647,6 +731,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A6759D6427E02E2D0047ABE9 /* mecab */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A6759D6327E02E2D0047ABE9 /* XCRemoteSwiftPackageReference "mecab" */;
+			productName = mecab;
+		};
 		A6F1EE312608365900D63B29 /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A6F1EE302608365900D63B29 /* XCRemoteSwiftPackageReference "realm-cocoa" */;

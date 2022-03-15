@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "mecab",
+        "repositoryURL": "https://github.com/landonepps/mecab",
+        "state": {
+          "branch": "master",
+          "revision": "bf12ad0e75ed507d0a361052430ac8802e228b47",
+          "version": null
+        }
+      },
+      {
         "package": "Realm",
         "repositoryURL": "https://github.com/realm/realm-cocoa",
         "state": {
