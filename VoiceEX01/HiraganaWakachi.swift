@@ -28,14 +28,38 @@ class HiraganaWakachi{
             case 1:
                 outputText += "\(token.surface)　"
             case 2:
-                if let reading = token.reading {
-                    let reading2 = reading.applyingTransform(.hiraganaToKatakana, reverse: true)
-                    outputText += "\(reading2 ?? "")"
+                if token.partsOfSpeech.count == 2 {
+                    if token.partsOfSpeech[1] == "数"{
+                        outputText += "\(token.surface)"
+                    }else{
+                        if let reading = token.reading {
+                            let reading2 = reading.applyingTransform(.hiraganaToKatakana, reverse: true)
+                            outputText += "\(reading2 ?? "")"
+                        }
+                    }
+                }else{
+                
+                    if let reading = token.reading {
+                        let reading2 = reading.applyingTransform(.hiraganaToKatakana, reverse: true)
+                        outputText += "\(reading2 ?? "")"
+                    }
                 }
             case 3:
-                if let reading = token.reading {
-                    let reading2 = reading.applyingTransform(.hiraganaToKatakana, reverse: true)
-                    outputText += "\(reading2 ?? "")　"
+                if token.partsOfSpeech.count == 2 {
+                    if token.partsOfSpeech[1] == "数"{
+                        outputText += "\(token.surface)　"
+                    }else{
+                        if let reading = token.reading {
+                            let reading2 = reading.applyingTransform(.hiraganaToKatakana, reverse: true)
+                            outputText += "\(reading2 ?? "")　"
+                        }
+                    }
+                }else{
+                
+                    if let reading = token.reading {
+                        let reading2 = reading.applyingTransform(.hiraganaToKatakana, reverse: true)
+                        outputText += "\(reading2 ?? "")　"
+                    }
                 }
             default:
                 outputText = recognitionText

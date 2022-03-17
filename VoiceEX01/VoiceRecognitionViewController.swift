@@ -45,6 +45,7 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
     var recognitionTask: SFSpeechRecognitionTask?
     
     var textList = [String]()
+    var textListBackUp = [String]()
     var textListFinal = [String]()
     var listCounter:Int = 0
     var listChageFlag:Int = 0
@@ -62,6 +63,14 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var listButton: UIButton!
     @IBOutlet var mainView: UIView!
     @IBOutlet var wakachiSwitch: UISwitch!
+    
+    @IBOutlet var defaultButton: UIButton!
+    @IBOutlet var wakachiButton: UIButton!
+    @IBOutlet var hiraganaButton: UIButton!
+    @IBOutlet var hirawakaButton: UIButton!
+    
+    
+    
     
     @IBAction func wakachiSwitch(_ sender: Any) {
         if wakachiSwitch.isOn == true{
@@ -86,6 +95,11 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
     override func viewDidLoad() {
       super.viewDidLoad()
   
+        defaultButton.layer.backgroundColor = UIColor.systemRed.cgColor
+        wakachiButton.layer.backgroundColor = UIColor.systemGray.cgColor
+        hiraganaButton.layer.backgroundColor = UIColor.systemGray.cgColor
+        hirawakaButton.layer.backgroundColor = UIColor.systemGray.cgColor
+        
         print("音声認識 = 　\(recognizer.supportsOnDeviceRecognition)")
         
         mainView.backgroundColor = UIColor.init(red: 220/255, green: 255/255, blue: 255/255, alpha: 100/100)
@@ -244,10 +258,16 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
         } else {
             DispatchQueue.main.async {
             self.textList.insert((result?.bestTranscription.formattedString)!, at: 0)
+                self.textListBackUp.insert((result?.bestTranscription.formattedString)!, at: 0)
                 
                 //self.hiraganawakachiFlag = 3
                 
                 self.textView.text = self.hiraganawakachi.hiraganaWakachi(recognitionText: self.textList[0], changeFlag: self.hiraganawakachiFlag)
+                
+                
+                //self.textView.contentOffset = CGPoint(x:0, y:-self.textView.contentInset.top)
+                
+                
                 self.textList[0] = self.textView.text
                 
             //self.textView.text = self.textList[0]
@@ -257,6 +277,70 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
       })
         
     }
+    
+    @IBAction func defaultButton(_ sender: Any) {
+        
+        defaultButton.layer.backgroundColor = UIColor.systemRed.cgColor
+        wakachiButton.layer.backgroundColor = UIColor.systemGray.cgColor
+        hiraganaButton.layer.backgroundColor = UIColor.systemGray.cgColor
+        hirawakaButton.layer.backgroundColor = UIColor.systemGray.cgColor
+        
+        self.hiraganawakachiFlag = 0
+        
+        
+        if self.textListBackUp.count != 0{
+            self.textView.text = self.hiraganawakachi.hiraganaWakachi(recognitionText: self.textListBackUp[0], changeFlag: self.hiraganawakachiFlag)
+            
+            self.textList[0] = self.textView.text
+        }
+        
+    }
+    
+    @IBAction func wakachiButton(_ sender: Any) {
+        defaultButton.layer.backgroundColor = UIColor.systemGray.cgColor
+        wakachiButton.layer.backgroundColor = UIColor.systemRed.cgColor
+        hiraganaButton.layer.backgroundColor = UIColor.systemGray.cgColor
+        hirawakaButton.layer.backgroundColor = UIColor.systemGray.cgColor
+        
+        self.hiraganawakachiFlag = 1
+        
+        if self.textListBackUp.count != 0{
+            self.textView.text = self.hiraganawakachi.hiraganaWakachi(recognitionText: self.textListBackUp[0], changeFlag: self.hiraganawakachiFlag)
+            
+            self.textList[0] = self.textView.text
+        }
+    }
+    
+    @IBAction func hiraganaButton(_ sender: Any) {
+        defaultButton.layer.backgroundColor = UIColor.systemGray.cgColor
+        wakachiButton.layer.backgroundColor = UIColor.systemGray.cgColor
+        hiraganaButton.layer.backgroundColor = UIColor.systemRed.cgColor
+        hirawakaButton.layer.backgroundColor = UIColor.systemGray.cgColor
+        
+        self.hiraganawakachiFlag = 2
+        
+        if self.textListBackUp.count != 0{
+            self.textView.text = self.hiraganawakachi.hiraganaWakachi(recognitionText: self.textListBackUp[0], changeFlag: self.hiraganawakachiFlag)
+            
+            self.textList[0] = self.textView.text
+        }
+    }
+    
+    @IBAction func hirawakaButton(_ sender: Any) {
+        defaultButton.layer.backgroundColor = UIColor.systemGray.cgColor
+        wakachiButton.layer.backgroundColor = UIColor.systemGray.cgColor
+        hiraganaButton.layer.backgroundColor = UIColor.systemGray.cgColor
+        hirawakaButton.layer.backgroundColor = UIColor.systemRed.cgColor
+        
+        self.hiraganawakachiFlag = 3
+        
+        if self.textListBackUp.count != 0{
+            self.textView.text = self.hiraganawakachi.hiraganaWakachi(recognitionText: self.textListBackUp[0], changeFlag: self.hiraganawakachiFlag)
+            
+            self.textList[0] = self.textView.text
+        }
+    }
+    
     
     @IBAction func recordButtonTapped(_ sender: Any) {
         if isRecording {
