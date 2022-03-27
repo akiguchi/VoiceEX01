@@ -69,6 +69,7 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet var hiraganaButton: UIButton!
     @IBOutlet var hirawakaButton: UIButton!
     
+    @IBOutlet weak var resetButton: UIButton!
     
     
     
@@ -131,6 +132,9 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
         listButton.tintColor = UIColor.lightText
         
         //録音ボタンの装飾
+        resetButton.isEnabled = false
+        resetButton.setTitleColor(UIColor.white, for: .normal) 
+    
         recordButton.setTitle("停止中", for: .normal)
         recordButton.setTitleColor(UIColor.white, for: .normal)
         //recordButton.backgroundColor = UIColor(red:0/255,green:0/255,blue:0/255,alpha:0.7)
@@ -349,6 +353,7 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
                 self.showStartButton()
             }
             */
+            resetButton.isEnabled = false
             wakachiSwitch.isEnabled = true
             recordButton.layer.cornerRadius = 0
             recordButton.setTitle("停止中", for: .normal)
@@ -360,6 +365,7 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
                 self.showStopButton()
             }
              */
+            resetButton.isEnabled = true
             wakachiSwitch.isEnabled = false
             recordButton.layer.cornerRadius = 24
             recordButton.setTitle("翻訳中", for: .normal)
