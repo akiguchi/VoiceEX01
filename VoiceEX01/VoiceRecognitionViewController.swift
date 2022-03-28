@@ -233,6 +233,10 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
         recognitionReq?.endAudio()
     }
     
+    
+    
+    
+    
     func startLiveTranscription() throws {
       // もし前回の音声認識タスクが実行中ならキャンセル
       if let recognitionTask = self.recognitionTask {
@@ -247,7 +251,9 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
       guard let recognitionReq = recognitionReq else {
         return
       }
-      recognitionReq.shouldReportPartialResults = true
+      
+        recognitionReq.shouldReportPartialResults = true
+        //recognitionReq.shouldReportPartialResults = false //途中経過表示
 
       // オーディオセッションの設定
       let audioSession = AVAudioSession.sharedInstance()
@@ -265,22 +271,25 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
 
         listChageFlag = 0
         
+        
+        
       recognitionTask = recognizer.recognitionTask(with: recognitionReq, resultHandler: { (result, error) in
         if let error = error {
             self.listChageFlag = 0
 
         } else {
+            
             DispatchQueue.main.async {
-            self.textList.insert((result?.bestTranscription.formattedString)!, at: 0)
+                self.textList.insert((result?.bestTranscription.formattedString)!, at: 0)
                 self.textListBackUp.insert((result?.bestTranscription.formattedString)!, at: 0)
-                
-                //self.hiraganawakachiFlag = 3
+
+                //TextViewのスクロール関係処理
+                self.textView.isScrollEnabled = false
                 
                 self.textView.text = self.hiraganawakachi.hiraganaWakachi(recognitionText: self.textList[0], changeFlag: self.hiraganawakachiFlag)
                 
-                
-                //self.textView.contentOffset = CGPoint(x:0, y:-self.textView.contentInset.top)
-                
+                //TextViewのスクロール関係処理
+                self.scrollToBottom()
                 
                 self.textList[0] = self.textView.text
                 
@@ -290,7 +299,22 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
         }
       })
         
+        
     }
+    
+    
+    //TextViewのスクロール関係処理
+    func scrollToBottom() {
+            textView.selectedRange = NSRange(location: textView.text.count, length: 0)
+            textView.isScrollEnabled = true
+
+            let scrollY = textView.contentSize.height - textView.bounds.height
+            let scrollPoint = CGPoint(x: 0, y: scrollY > 0 ? scrollY : 0)
+            textView.setContentOffset(scrollPoint, animated: true)
+    }
+    
+    
+    
     
     @IBAction func defaultButton(_ sender: Any) {
         
@@ -545,7 +569,7 @@ class textCell: UITableViewCell, UITextViewDelegate {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
- 
+        print("選択")
         // Configure the view for the selected state
     }
  
