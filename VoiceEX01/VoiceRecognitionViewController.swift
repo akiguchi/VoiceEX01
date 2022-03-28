@@ -70,6 +70,7 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet var hirawakaButton: UIButton!
     
     @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet var backButton: UIButton!
     
     
     
@@ -130,6 +131,15 @@ class VoiceRecognitionViewController: UIViewController, UITableViewDelegate, UIT
         //リストボタンの装飾
         listButton.layer.cornerRadius = 10.0  // 角丸のサイズ
         listButton.tintColor = UIColor.lightText
+        
+        //その他ボタンの装飾
+        resetButton.layer.cornerRadius = 10.0  // 角丸のサイズ
+        defaultButton.layer.cornerRadius = 10.0  // 角丸のサイズ
+        wakachiButton.layer.cornerRadius = 10.0  // 角丸のサイズ
+        hiraganaButton.layer.cornerRadius = 10.0  // 角丸のサイズ
+        hirawakaButton.layer.cornerRadius = 10.0  // 角丸のサイズ
+        backButton.layer.cornerRadius = 10.0  // 角丸のサイズ
+        
         
         //録音ボタンの装飾
         resetButton.isEnabled = false
